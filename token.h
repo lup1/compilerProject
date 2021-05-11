@@ -97,7 +97,27 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 9 "parser1.bison"
+
+    struct program *program;
+    struct programs *programs;
+    struct func *func;
+    struct param *param;
+    struct body *body;
+    struct line *line;
+    struct expr *expr;
+    struct assign *assign;
+    struct term *term;
+    struct compare *compare;
+    struct factor *factor;
+    struct type *type;
+
+#line 118 "token.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
