@@ -6,6 +6,21 @@ extern int yyerror( char *str );
 extern int yylineno;
 %}
 
+%union {
+    struct program *program;
+    struct programs *programs;
+    struct func *func;
+    struct param *param;
+    struct body *body;
+    struct line *line;
+    struct expr *expr;
+    struct assign *assign;
+    struct term *term;
+    struct compare *compare;
+    struct factor *factor;
+    struct type *type;
+}
+
 %token TOKEN_EOF
 %token TOKEN_SKIP
 %token TOKEN_LPARENT
