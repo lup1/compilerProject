@@ -186,6 +186,7 @@ int main(int argc, char *argv[])
 
         else if (print_flag) {
                 printf("print case \n");
+                
         }
     
         else if (resolve_flag) {
