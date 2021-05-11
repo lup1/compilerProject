@@ -1,0 +1,3 @@
+b: integer = 6;
+x: integer = 3;
+y: integer = 5;

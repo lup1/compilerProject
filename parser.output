@@ -1,0 +1,880 @@
+Terminals unused in grammar
+
+    TOKEN_EOF
+    TOKEN_SKIP
+    TOKEN_INCREMENT
+    TOKEN_DECREMENT
+    TOKEN_LOGAND
+    TOKEN_LOGOR
+    TOKEN_COMMENT
+    TOKEN_OCOMMENT
+    TOKEN_CCOMMENT
+    TOKEN_WHILE
+    TOKEN_IF
+    TOKEN_ELSE
+    TOKEN_PRINT
+    LT
+    TOKEN_ERROR
+
+
+State 45 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: programs
+
+    2 programs: func
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT param TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+    4     | TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    5 param: TOKEN_IDENT TOKEN_COLON type
+    6      | TOKEN_IDENT TOKEN_COLON type ", " param
+
+    7 body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON
+    8     | line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON
+    9     | line
+
+   10 line: expr TOKEN_SEMICOLON
+   11     | expr TOKEN_SEMICOLON line
+
+   12 expr: assign
+   13     | term compare term
+   14     | term TOKEN_ADD term
+   15     | term TOKEN_SUBTRACT term
+   16     | term
+   17     | TOKEN_QUOTE expr TOKEN_QUOTE
+
+   18 assign: TOKEN_IDENT TOKEN_COLON type
+   19       | TOKEN_IDENT TOKEN_COLON type TOKEN_ASS line
+   20       | TOKEN_IDENT TOKEN_ASS expr
+
+   21 term: term TOKEN_STAR factor
+   22     | term TOKEN_DIVIDE factor
+   23     | factor
+
+   24 compare: EQ
+   25        | GT
+   26        | GE
+   27        | LE
+   28        | NE
+
+   29 factor: TOKEN_SUBTRACT factor
+   30       | TOKEN_IDENT
+   31       | TOKEN_TRUE
+   32       | TOKEN_FALSE
+   33       | TOKEN_NUMBER
+
+   34 type: TOKEN_VOID
+   35     | TOKEN_INTEGER
+   36     | TOKEN_STRING
+   37     | TOKEN_BOOLEAN
+   38     | TOKEN_CHAR
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    TOKEN_EOF (258)
+    TOKEN_SKIP (259)
+    TOKEN_LPARENT (260) 3 4
+    TOKEN_RPARENT (261) 3 4
+    TOKEN_LBRACKET (262) 3 4
+    TOKEN_RBRACKET (263) 3 4
+    TOKEN_SEMICOLON (264) 7 8 10 11
+    TOKEN_COLON (265) 3 4 5 6 18 19
+    TOKEN_STAR (266) 21
+    TOKEN_ADD (267) 14
+    TOKEN_SUBTRACT (268) 15 29
+    TOKEN_DIVIDE (269) 22
+    TOKEN_INCREMENT (270)
+    TOKEN_DECREMENT (271)
+    TOKEN_LOGAND (272)
+    TOKEN_LOGOR (273)
+    TOKEN_QUOTE (274) 17
+    TOKEN_COMMENT (275)
+    TOKEN_OCOMMENT (276)
+    TOKEN_CCOMMENT (277)
+    TOKEN_WHILE (278)
+    TOKEN_IF (279)
+    TOKEN_ELSE (280)
+    TOKEN_FUNCTION (281) 3 4
+    TOKEN_VOID (282) 34
+    TOKEN_INTEGER (283) 35
+    TOKEN_BOOLEAN (284) 37
+    TOKEN_CHAR (285) 38
+    TOKEN_STRING (286) 36
+    TOKEN_TRUE (287) 31
+    TOKEN_FALSE (288) 32
+    TOKEN_PRINT (289)
+    TOKEN_RETURN (290) 7 8
+    TOKEN_IDENT (291) 3 4 5 6 7 18 19 20 30
+    TOKEN_NUMBER (292) 8 33
+    TOKEN_ASS (293) 3 4 19 20
+    GT (294) 25
+    LT (295)
+    GE (296) 26
+    LE (297) 27
+    EQ (298) 24
+    NE (299) 28
+    TOKEN_ERROR (300)
+    ", " (301) 6
+
+
+Nonterminals, with rules where they appear
+
+    $accept (47)
+        on left: 0
+    program (48)
+        on left: 1
+        on right: 0
+    programs (49)
+        on left: 2
+        on right: 1
+    func (50)
+        on left: 3 4
+        on right: 2
+    param (51)
+        on left: 5 6
+        on right: 3 6
+    body (52)
+        on left: 7 8 9
+        on right: 3 4
+    line (53)
+        on left: 10 11
+        on right: 7 8 9 11 19
+    expr (54)
+        on left: 12 13 14 15 16 17
+        on right: 10 11 17 20
+    assign (55)
+        on left: 18 19 20
+        on right: 12
+    term (56)
+        on left: 21 22 23
+        on right: 13 14 15 16 21 22
+    compare (57)
+        on left: 24 25 26 27 28
+        on right: 13
+    factor (58)
+        on left: 29 30 31 32 33
+        on right: 21 22 23 29
+    type (59)
+        on left: 34 35 36 37 38
+        on right: 3 4 5 6 18 19
+
+
+State 0
+
+    0 $accept: . program $end
+
+    TOKEN_IDENT  shift, and go to state 1
+
+    program   go to state 2
+    programs  go to state 3
+    func      go to state 4
+
+
+State 1
+
+    3 func: TOKEN_IDENT . TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT param TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+    4     | TOKEN_IDENT . TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_COLON  shift, and go to state 5
+
+
+State 2
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 6
+
+
+State 3
+
+    1 program: programs .
+
+    $default  reduce using rule 1 (program)
+
+
+State 4
+
+    2 programs: func .
+
+    $default  reduce using rule 2 (programs)
+
+
+State 5
+
+    3 func: TOKEN_IDENT TOKEN_COLON . TOKEN_FUNCTION type TOKEN_LPARENT param TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+    4     | TOKEN_IDENT TOKEN_COLON . TOKEN_FUNCTION type TOKEN_LPARENT TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_FUNCTION  shift, and go to state 7
+
+
+State 6
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 7
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION . type TOKEN_LPARENT param TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+    4     | TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION . type TOKEN_LPARENT TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_VOID     shift, and go to state 8
+    TOKEN_INTEGER  shift, and go to state 9
+    TOKEN_BOOLEAN  shift, and go to state 10
+    TOKEN_CHAR     shift, and go to state 11
+    TOKEN_STRING   shift, and go to state 12
+
+    type  go to state 13
+
+
+State 8
+
+   34 type: TOKEN_VOID .
+
+    $default  reduce using rule 34 (type)
+
+
+State 9
+
+   35 type: TOKEN_INTEGER .
+
+    $default  reduce using rule 35 (type)
+
+
+State 10
+
+   37 type: TOKEN_BOOLEAN .
+
+    $default  reduce using rule 37 (type)
+
+
+State 11
+
+   38 type: TOKEN_CHAR .
+
+    $default  reduce using rule 38 (type)
+
+
+State 12
+
+   36 type: TOKEN_STRING .
+
+    $default  reduce using rule 36 (type)
+
+
+State 13
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type . TOKEN_LPARENT param TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+    4     | TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type . TOKEN_LPARENT TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_LPARENT  shift, and go to state 14
+
+
+State 14
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT . param TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+    4     | TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT . TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_RPARENT  shift, and go to state 15
+    TOKEN_IDENT    shift, and go to state 16
+
+    param  go to state 17
+
+
+State 15
+
+    4 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT TOKEN_RPARENT . TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_ASS  shift, and go to state 18
+
+
+State 16
+
+    5 param: TOKEN_IDENT . TOKEN_COLON type
+    6      | TOKEN_IDENT . TOKEN_COLON type ", " param
+
+    TOKEN_COLON  shift, and go to state 19
+
+
+State 17
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT param . TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_RPARENT  shift, and go to state 20
+
+
+State 18
+
+    4 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT TOKEN_RPARENT TOKEN_ASS . TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_LBRACKET  shift, and go to state 21
+
+
+State 19
+
+    5 param: TOKEN_IDENT TOKEN_COLON . type
+    6      | TOKEN_IDENT TOKEN_COLON . type ", " param
+
+    TOKEN_VOID     shift, and go to state 8
+    TOKEN_INTEGER  shift, and go to state 9
+    TOKEN_BOOLEAN  shift, and go to state 10
+    TOKEN_CHAR     shift, and go to state 11
+    TOKEN_STRING   shift, and go to state 12
+
+    type  go to state 22
+
+
+State 20
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT param TOKEN_RPARENT . TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_ASS  shift, and go to state 23
+
+
+State 21
+
+    4 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET . body TOKEN_RBRACKET
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_QUOTE     shift, and go to state 25
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 28
+    TOKEN_NUMBER    shift, and go to state 29
+
+    body    go to state 30
+    line    go to state 31
+    expr    go to state 32
+    assign  go to state 33
+    term    go to state 34
+    factor  go to state 35
+
+
+State 22
+
+    5 param: TOKEN_IDENT TOKEN_COLON type .
+    6      | TOKEN_IDENT TOKEN_COLON type . ", " param
+
+    ", "  shift, and go to state 36
+
+    $default  reduce using rule 5 (param)
+
+
+State 23
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT param TOKEN_RPARENT TOKEN_ASS . TOKEN_LBRACKET body TOKEN_RBRACKET
+
+    TOKEN_LBRACKET  shift, and go to state 37
+
+
+State 24
+
+   29 factor: TOKEN_SUBTRACT . factor
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 38
+    TOKEN_NUMBER    shift, and go to state 29
+
+    factor  go to state 39
+
+
+State 25
+
+   17 expr: TOKEN_QUOTE . expr TOKEN_QUOTE
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_QUOTE     shift, and go to state 25
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 28
+    TOKEN_NUMBER    shift, and go to state 29
+
+    expr    go to state 40
+    assign  go to state 33
+    term    go to state 34
+    factor  go to state 35
+
+
+State 26
+
+   31 factor: TOKEN_TRUE .
+
+    $default  reduce using rule 31 (factor)
+
+
+State 27
+
+   32 factor: TOKEN_FALSE .
+
+    $default  reduce using rule 32 (factor)
+
+
+State 28
+
+   18 assign: TOKEN_IDENT . TOKEN_COLON type
+   19       | TOKEN_IDENT . TOKEN_COLON type TOKEN_ASS line
+   20       | TOKEN_IDENT . TOKEN_ASS expr
+   30 factor: TOKEN_IDENT .
+
+    TOKEN_COLON  shift, and go to state 41
+    TOKEN_ASS    shift, and go to state 42
+
+    $default  reduce using rule 30 (factor)
+
+
+State 29
+
+   33 factor: TOKEN_NUMBER .
+
+    $default  reduce using rule 33 (factor)
+
+
+State 30
+
+    4 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body . TOKEN_RBRACKET
+
+    TOKEN_RBRACKET  shift, and go to state 43
+
+
+State 31
+
+    7 body: line . TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON
+    8     | line . TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON
+    9     | line .
+
+    TOKEN_RETURN  shift, and go to state 44
+
+    $default  reduce using rule 9 (body)
+
+
+State 32
+
+   10 line: expr . TOKEN_SEMICOLON
+   11     | expr . TOKEN_SEMICOLON line
+
+    TOKEN_SEMICOLON  shift, and go to state 45
+
+
+State 33
+
+   12 expr: assign .
+
+    $default  reduce using rule 12 (expr)
+
+
+State 34
+
+   13 expr: term . compare term
+   14     | term . TOKEN_ADD term
+   15     | term . TOKEN_SUBTRACT term
+   16     | term .
+   21 term: term . TOKEN_STAR factor
+   22     | term . TOKEN_DIVIDE factor
+
+    TOKEN_STAR      shift, and go to state 46
+    TOKEN_ADD       shift, and go to state 47
+    TOKEN_SUBTRACT  shift, and go to state 48
+    TOKEN_DIVIDE    shift, and go to state 49
+    GT              shift, and go to state 50
+    GE              shift, and go to state 51
+    LE              shift, and go to state 52
+    EQ              shift, and go to state 53
+    NE              shift, and go to state 54
+
+    $default  reduce using rule 16 (expr)
+
+    compare  go to state 55
+
+
+State 35
+
+   23 term: factor .
+
+    $default  reduce using rule 23 (term)
+
+
+State 36
+
+    6 param: TOKEN_IDENT TOKEN_COLON type ", " . param
+
+    TOKEN_IDENT  shift, and go to state 16
+
+    param  go to state 56
+
+
+State 37
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT param TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET . body TOKEN_RBRACKET
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_QUOTE     shift, and go to state 25
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 28
+    TOKEN_NUMBER    shift, and go to state 29
+
+    body    go to state 57
+    line    go to state 31
+    expr    go to state 32
+    assign  go to state 33
+    term    go to state 34
+    factor  go to state 35
+
+
+State 38
+
+   30 factor: TOKEN_IDENT .
+
+    $default  reduce using rule 30 (factor)
+
+
+State 39
+
+   29 factor: TOKEN_SUBTRACT factor .
+
+    $default  reduce using rule 29 (factor)
+
+
+State 40
+
+   17 expr: TOKEN_QUOTE expr . TOKEN_QUOTE
+
+    TOKEN_QUOTE  shift, and go to state 58
+
+
+State 41
+
+   18 assign: TOKEN_IDENT TOKEN_COLON . type
+   19       | TOKEN_IDENT TOKEN_COLON . type TOKEN_ASS line
+
+    TOKEN_VOID     shift, and go to state 8
+    TOKEN_INTEGER  shift, and go to state 9
+    TOKEN_BOOLEAN  shift, and go to state 10
+    TOKEN_CHAR     shift, and go to state 11
+    TOKEN_STRING   shift, and go to state 12
+
+    type  go to state 59
+
+
+State 42
+
+   20 assign: TOKEN_IDENT TOKEN_ASS . expr
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_QUOTE     shift, and go to state 25
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 28
+    TOKEN_NUMBER    shift, and go to state 29
+
+    expr    go to state 60
+    assign  go to state 33
+    term    go to state 34
+    factor  go to state 35
+
+
+State 43
+
+    4 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET .
+
+    $default  reduce using rule 4 (func)
+
+
+State 44
+
+    7 body: line TOKEN_RETURN . TOKEN_IDENT TOKEN_SEMICOLON
+    8     | line TOKEN_RETURN . TOKEN_NUMBER TOKEN_SEMICOLON
+
+    TOKEN_IDENT   shift, and go to state 61
+    TOKEN_NUMBER  shift, and go to state 62
+
+
+State 45
+
+   10 line: expr TOKEN_SEMICOLON .
+   11     | expr TOKEN_SEMICOLON . line
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_QUOTE     shift, and go to state 25
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 28
+    TOKEN_NUMBER    shift, and go to state 29
+
+    TOKEN_QUOTE  [reduce using rule 10 (line)]
+    $default     reduce using rule 10 (line)
+
+    line    go to state 63
+    expr    go to state 32
+    assign  go to state 33
+    term    go to state 34
+    factor  go to state 35
+
+
+State 46
+
+   21 term: term TOKEN_STAR . factor
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 38
+    TOKEN_NUMBER    shift, and go to state 29
+
+    factor  go to state 64
+
+
+State 47
+
+   14 expr: term TOKEN_ADD . term
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 38
+    TOKEN_NUMBER    shift, and go to state 29
+
+    term    go to state 65
+    factor  go to state 35
+
+
+State 48
+
+   15 expr: term TOKEN_SUBTRACT . term
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 38
+    TOKEN_NUMBER    shift, and go to state 29
+
+    term    go to state 66
+    factor  go to state 35
+
+
+State 49
+
+   22 term: term TOKEN_DIVIDE . factor
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 38
+    TOKEN_NUMBER    shift, and go to state 29
+
+    factor  go to state 67
+
+
+State 50
+
+   25 compare: GT .
+
+    $default  reduce using rule 25 (compare)
+
+
+State 51
+
+   26 compare: GE .
+
+    $default  reduce using rule 26 (compare)
+
+
+State 52
+
+   27 compare: LE .
+
+    $default  reduce using rule 27 (compare)
+
+
+State 53
+
+   24 compare: EQ .
+
+    $default  reduce using rule 24 (compare)
+
+
+State 54
+
+   28 compare: NE .
+
+    $default  reduce using rule 28 (compare)
+
+
+State 55
+
+   13 expr: term compare . term
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 38
+    TOKEN_NUMBER    shift, and go to state 29
+
+    term    go to state 68
+    factor  go to state 35
+
+
+State 56
+
+    6 param: TOKEN_IDENT TOKEN_COLON type ", " param .
+
+    $default  reduce using rule 6 (param)
+
+
+State 57
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT param TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body . TOKEN_RBRACKET
+
+    TOKEN_RBRACKET  shift, and go to state 69
+
+
+State 58
+
+   17 expr: TOKEN_QUOTE expr TOKEN_QUOTE .
+
+    $default  reduce using rule 17 (expr)
+
+
+State 59
+
+   18 assign: TOKEN_IDENT TOKEN_COLON type .
+   19       | TOKEN_IDENT TOKEN_COLON type . TOKEN_ASS line
+
+    TOKEN_ASS  shift, and go to state 70
+
+    $default  reduce using rule 18 (assign)
+
+
+State 60
+
+   20 assign: TOKEN_IDENT TOKEN_ASS expr .
+
+    $default  reduce using rule 20 (assign)
+
+
+State 61
+
+    7 body: line TOKEN_RETURN TOKEN_IDENT . TOKEN_SEMICOLON
+
+    TOKEN_SEMICOLON  shift, and go to state 71
+
+
+State 62
+
+    8 body: line TOKEN_RETURN TOKEN_NUMBER . TOKEN_SEMICOLON
+
+    TOKEN_SEMICOLON  shift, and go to state 72
+
+
+State 63
+
+   11 line: expr TOKEN_SEMICOLON line .
+
+    $default  reduce using rule 11 (line)
+
+
+State 64
+
+   21 term: term TOKEN_STAR factor .
+
+    $default  reduce using rule 21 (term)
+
+
+State 65
+
+   14 expr: term TOKEN_ADD term .
+   21 term: term . TOKEN_STAR factor
+   22     | term . TOKEN_DIVIDE factor
+
+    TOKEN_STAR    shift, and go to state 46
+    TOKEN_DIVIDE  shift, and go to state 49
+
+    $default  reduce using rule 14 (expr)
+
+
+State 66
+
+   15 expr: term TOKEN_SUBTRACT term .
+   21 term: term . TOKEN_STAR factor
+   22     | term . TOKEN_DIVIDE factor
+
+    TOKEN_STAR    shift, and go to state 46
+    TOKEN_DIVIDE  shift, and go to state 49
+
+    $default  reduce using rule 15 (expr)
+
+
+State 67
+
+   22 term: term TOKEN_DIVIDE factor .
+
+    $default  reduce using rule 22 (term)
+
+
+State 68
+
+   13 expr: term compare term .
+   21 term: term . TOKEN_STAR factor
+   22     | term . TOKEN_DIVIDE factor
+
+    TOKEN_STAR    shift, and go to state 46
+    TOKEN_DIVIDE  shift, and go to state 49
+
+    $default  reduce using rule 13 (expr)
+
+
+State 69
+
+    3 func: TOKEN_IDENT TOKEN_COLON TOKEN_FUNCTION type TOKEN_LPARENT param TOKEN_RPARENT TOKEN_ASS TOKEN_LBRACKET body TOKEN_RBRACKET .
+
+    $default  reduce using rule 3 (func)
+
+
+State 70
+
+   19 assign: TOKEN_IDENT TOKEN_COLON type TOKEN_ASS . line
+
+    TOKEN_SUBTRACT  shift, and go to state 24
+    TOKEN_QUOTE     shift, and go to state 25
+    TOKEN_TRUE      shift, and go to state 26
+    TOKEN_FALSE     shift, and go to state 27
+    TOKEN_IDENT     shift, and go to state 28
+    TOKEN_NUMBER    shift, and go to state 29
+
+    line    go to state 73
+    expr    go to state 32
+    assign  go to state 33
+    term    go to state 34
+    factor  go to state 35
+
+
+State 71
+
+    7 body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON .
+
+    $default  reduce using rule 7 (body)
+
+
+State 72
+
+    8 body: line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON .
+
+    $default  reduce using rule 8 (body)
+
+
+State 73
+
+   19 assign: TOKEN_IDENT TOKEN_COLON type TOKEN_ASS line .
+
+    $default  reduce using rule 19 (assign)
