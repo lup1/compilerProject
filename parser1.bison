@@ -14,6 +14,12 @@ extern int yylineno;
     char* name;
 }
 
+// Everything of one type can only interact with other things of the same type
+%type <decl> program programs func type line expr term
+%type <stmt>
+%type <symbol>
+%type <expr>
+
 %token TOKEN_EOF
 %token TOKEN_SKIP
 %token TOKEN_LPARENT
@@ -63,10 +69,11 @@ extern int yylineno;
 
 
 %%
-program: programs 
+program: programs { parser_result = $1; }
+       | %empty { parser_result = NULL; }
        ;
 
-programs: func 
+programs: func { $$ = decl_create($1, $3,0,0,0); }
         ;
 
 
