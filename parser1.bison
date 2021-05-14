@@ -17,10 +17,10 @@ extern int yylineno;
 }
 
 // Everything of one type can only interact with other things of the same type
-%type <decl> program programs func type line expr term
-%type <stmt> 
-%type <symbol>
-%type <expr>
+%type <decl> program programs func line expr
+%type <stmt> compare factor
+// %type <symbol> compare factor
+%type <expr> term 
 %type <type> type assign
 
 %token TOKEN_EOF
