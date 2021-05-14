@@ -11,14 +11,17 @@ extern int yylineno;
     struct stmt *stmt;
     struct symbol *symbol;
     struct expr *expr;
+    struct type *type;
     char* name;
+
 }
 
 // Everything of one type can only interact with other things of the same type
 %type <decl> program programs func type line expr term
-%type <stmt>
+%type <stmt> 
 %type <symbol>
 %type <expr>
+%type <type> type assign
 
 %token TOKEN_EOF
 %token TOKEN_SKIP
