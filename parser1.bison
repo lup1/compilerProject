@@ -76,7 +76,7 @@ program: programs { parser_result = $1; }
        | %empty { parser_result = NULL; }
        ;
 
-programs: func { $$ = decl_create($1, $3,0,0,0); }
+programs: func { $$ = $1; }
         ;
 
 
@@ -89,18 +89,18 @@ param: TOKEN_IDENT TOKEN_COLON type
 
 body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON 
     | line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON 
-    | line
+    | line { $$ = $1; }
     ;
 
 line: expr TOKEN_SEMICOLON
     | expr TOKEN_SEMICOLON line
     ;
 
-expr: assign 
+expr: assign { $$ = $1; }
     | term compare term
     | term TOKEN_ADD term
     | term TOKEN_SUBTRACT term
-    | term
+    | term { $$ = $1; }
     | TOKEN_QUOTE expr TOKEN_QUOTE
     ;
 assign: TOKEN_IDENT TOKEN_COLON type
@@ -109,28 +109,28 @@ assign: TOKEN_IDENT TOKEN_COLON type
       ;
 term: term TOKEN_STAR factor
     | term TOKEN_DIVIDE factor
-    | factor
+    | factor { $$ = $1; }
     ;
-compare: EQ
-       | GT 
-       | GE 
-       | LE 
-       | NE
+compare: EQ { $$ = atoi(yytext); }
+       | GT { $$ = atoi(yytext); }
+       | GE { $$ = atoi(yytext); }
+       | LE { $$ = atoi(yytext); }
+       | NE { $$ = atoi(yytext); }
        ;
 
 factor: TOKEN_SUBTRACT factor
-      | TOKEN_IDENT
-      | TOKEN_TRUE
-      | TOKEN_FALSE
-      | TOKEN_NUMBER
+      | TOKEN_IDENT { $$ = atoi(yytext); }
+      | TOKEN_TRUE { $$ = atoi(yytext); }
+      | TOKEN_FALSE { $$ = atoi(yytext); }
+      | TOKEN_NUMBER { $$ = atoi(yytext); }
       ;
 
 
-type: TOKEN_VOID
-    | TOKEN_INTEGER
-    | TOKEN_STRING
-    | TOKEN_BOOLEAN
-    | TOKEN_CHAR
+type: TOKEN_VOID { $$ = atoi(yytext); }
+    | TOKEN_INTEGER { $$ = atoi(yytext); }
+    | TOKEN_STRING { $$ = atoi(yytext); }
+    | TOKEN_BOOLEAN { $$ = atoi(yytext); }
+    | TOKEN_CHAR { $$ = atoi(yytext); }
     ;
 %%
 
