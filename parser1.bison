@@ -18,7 +18,7 @@ extern int yylineno;
 
 // Everything of one type can only interact with other things of the same type
 %type <decl> program programs func line expr
-%type <stmt> compare factor
+%type <stmt> compare factor body
 // %type <symbol> compare factor
 %type <expr> term 
 %type <type> type assign
@@ -92,16 +92,16 @@ body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON
     | line { $$ = $1; }
     ;
 
-line: expr TOKEN_SEMICOLON
-    | expr TOKEN_SEMICOLON line
+line: expr TOKEN_SEMICOLON { parser_result = $1; }
+    | expr TOKEN_SEMICOLON line 
     ;
 
 expr: assign { $$ = $1; }
     | term compare term
-    | term TOKEN_ADD term
-    | term TOKEN_SUBTRACT term
+    | term TOKEN_ADD term { $$ = $3 + $3; }
+    | term TOKEN_SUBTRACT term { $$ = $3 - $3; }
     | term { $$ = $1; }
-    | TOKEN_QUOTE expr TOKEN_QUOTE
+    | TOKEN_QUOTE expr TOKEN_QUOTE 
     ;
 assign: TOKEN_IDENT TOKEN_COLON type
       | TOKEN_IDENT TOKEN_COLON type TOKEN_ASS line

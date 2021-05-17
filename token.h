@@ -101,20 +101,15 @@ union YYSTYPE
 {
 #line 9 "parser1.bison"
 
-    struct program *program;
-    struct programs *programs;
-    struct func *func;
-    struct param *param;
-    struct body *body;
-    struct line *line;
+    struct decl *decl;
+    struct stmt *stmt;
+    struct symbol *symbol;
     struct expr *expr;
-    struct assign *assign;
-    struct term *term;
-    struct compare *compare;
-    struct factor *factor;
     struct type *type;
+    char* name;
 
-#line 118 "token.h"
+
+#line 113 "token.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
