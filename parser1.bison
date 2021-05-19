@@ -4,6 +4,7 @@ extern char *yytext;
 extern int yylex();
 extern int yyerror( char *str );
 extern int yylineno;
+extern void *parser_result;
 %}
 
 %union {
