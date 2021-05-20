@@ -186,6 +186,16 @@ int main(int argc, char *argv[])
 
         else if (print_flag) {
                 printf("print case \n");
+
+                parse_check = yypase();
+
+                if (parse_check) {
+                    printf("Parse error on line %d\n", yylineno);
+                }
+                else if (!parse_check) {
+
+                    // special print stuff that isn't finished yet
+                }
                 
         }
     
