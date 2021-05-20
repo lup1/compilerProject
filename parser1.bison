@@ -94,7 +94,7 @@ param: TOKEN_IDENT TOKEN_COLON type
      | TOKEN_IDENT TOKEN_COLON type ", " param
      ;
 
-body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON 
+body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON ($$ = stmt_create(STMT_RETURN, )) **NOTE: create some create statement based off of g
     | line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON 
     | line { $$ = $1; }
     ;
