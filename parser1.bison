@@ -1,10 +1,14 @@
 %{
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 extern char *yytext;
 extern int yylex();
 extern int yyerror( char *str );
 extern int yylineno;
-extern void *parser_result;
+extern struct decl *parser_result;
+//extern void *parser_result;
 %}
 
 %union {
@@ -17,12 +21,14 @@ extern void *parser_result;
 
 }
 
+
 // Everything of one type can only interact with other things of the same type
-%type <decl> program programs func line expr
+%type <decl> program programs func line expr //compare factor body term type assign
 %type <stmt> compare factor body
 // %type <symbol> compare factor
 %type <expr> term 
 %type <type> type assign
+// Try using create statements like the ones in the libraries
 
 %token TOKEN_EOF
 %token TOKEN_SKIP
@@ -99,8 +105,8 @@ line: expr TOKEN_SEMICOLON { parser_result = $1; }
 
 expr: assign { $$ = $1; }
     | term compare term
-    | term TOKEN_ADD term { $$ = $3 + $3; }
-    | term TOKEN_SUBTRACT term { $$ = $3 - $3; }
+    | term TOKEN_ADD term { $$ = expr_create(TOKEN_ADD, $1, $3); }
+    | term TOKEN_SUBTRACT term { $$ = expr_create(TOKEN_SUBTRACT, $1, $3); }
     | term { $$ = $1; }
     | TOKEN_QUOTE expr TOKEN_QUOTE 
     ;
@@ -145,6 +151,7 @@ type: TOKEN_VOID { $$ = atoi(yytext); }
 
 int yyerror(char *str)
 {
+    //struct decl *parser_result;
      printf("parse error: %s on line %d\n",str, yylineno);
      //return 0;
 }

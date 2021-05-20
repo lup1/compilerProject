@@ -69,13 +69,17 @@
 #line 1 "parser1.bison"
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 extern char *yytext;
 extern int yylex();
 extern int yyerror( char *str );
 extern int yylineno;
-extern void *parser_result;
+extern struct decl *parser_result;
+//extern void *parser_result;
 
-#line 79 "parser.c"
+#line 83 "parser.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -173,7 +177,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 10 "parser1.bison"
+#line 14 "parser1.bison"
 
     struct decl *decl;
     struct stmt *stmt;
@@ -183,7 +187,7 @@ union YYSTYPE
     char* name;
 
 
-#line 187 "parser.c"
+#line 191 "parser.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -563,11 +567,11 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    76,    76,    77,    80,    84,    85,    87,    88,    91,
-      92,    93,    96,    97,   100,   101,   102,   103,   104,   105,
-     107,   108,   109,   111,   112,   113,   115,   116,   117,   118,
-     119,   122,   123,   124,   125,   126,   130,   131,   132,   133,
-     134
+       0,    82,    82,    83,    86,    90,    91,    93,    94,    97,
+      98,    99,   102,   103,   106,   107,   108,   109,   110,   111,
+     113,   114,   115,   117,   118,   119,   121,   122,   123,   124,
+     125,   128,   129,   130,   131,   132,   136,   137,   138,   139,
+     140
 };
 #endif
 
@@ -1410,151 +1414,151 @@ yyreduce:
   switch (yyn)
     {
   case 2:
-#line 76 "parser1.bison"
+#line 82 "parser1.bison"
                   { parser_result = (yyvsp[0].decl); }
-#line 1416 "parser.c"
+#line 1420 "parser.c"
     break;
 
   case 3:
-#line 77 "parser1.bison"
+#line 83 "parser1.bison"
                 { parser_result = NULL; }
-#line 1422 "parser.c"
+#line 1426 "parser.c"
     break;
 
   case 4:
-#line 80 "parser1.bison"
+#line 86 "parser1.bison"
                { (yyval.decl) = (yyvsp[0].decl); }
-#line 1428 "parser.c"
+#line 1432 "parser.c"
     break;
 
   case 11:
-#line 93 "parser1.bison"
+#line 99 "parser1.bison"
            { (yyval.stmt) = (yyvsp[0].decl); }
-#line 1434 "parser.c"
+#line 1438 "parser.c"
     break;
 
   case 12:
-#line 96 "parser1.bison"
+#line 102 "parser1.bison"
                            { parser_result = (yyvsp[-1].decl); }
-#line 1440 "parser.c"
+#line 1444 "parser.c"
     break;
 
   case 14:
-#line 100 "parser1.bison"
+#line 106 "parser1.bison"
              { (yyval.decl) = (yyvsp[0].type); }
-#line 1446 "parser.c"
+#line 1450 "parser.c"
     break;
 
   case 16:
-#line 102 "parser1.bison"
-                          { (yyval.decl) = (yyvsp[0].expr) + (yyvsp[0].expr); }
-#line 1452 "parser.c"
+#line 108 "parser1.bison"
+                          { (yyval.decl) = expr_create(TOKEN_ADD, (yyvsp[-2].expr), (yyvsp[0].expr)); }
+#line 1456 "parser.c"
     break;
 
   case 17:
-#line 103 "parser1.bison"
-                               { (yyval.decl) = (yyvsp[0].expr) - (yyvsp[0].expr); }
-#line 1458 "parser.c"
+#line 109 "parser1.bison"
+                               { (yyval.decl) = expr_create(TOKEN_SUBTRACT, (yyvsp[-2].expr), (yyvsp[0].expr)); }
+#line 1462 "parser.c"
     break;
 
   case 18:
-#line 104 "parser1.bison"
+#line 110 "parser1.bison"
            { (yyval.decl) = (yyvsp[0].expr); }
-#line 1464 "parser.c"
+#line 1468 "parser.c"
     break;
 
   case 25:
-#line 113 "parser1.bison"
+#line 119 "parser1.bison"
              { (yyval.expr) = (yyvsp[0].stmt); }
-#line 1470 "parser.c"
+#line 1474 "parser.c"
     break;
 
   case 26:
-#line 115 "parser1.bison"
+#line 121 "parser1.bison"
             { (yyval.stmt) = atoi(yytext); }
-#line 1476 "parser.c"
+#line 1480 "parser.c"
     break;
 
   case 27:
-#line 116 "parser1.bison"
+#line 122 "parser1.bison"
             { (yyval.stmt) = atoi(yytext); }
-#line 1482 "parser.c"
+#line 1486 "parser.c"
     break;
 
   case 28:
-#line 117 "parser1.bison"
+#line 123 "parser1.bison"
             { (yyval.stmt) = atoi(yytext); }
-#line 1488 "parser.c"
+#line 1492 "parser.c"
     break;
 
   case 29:
-#line 118 "parser1.bison"
+#line 124 "parser1.bison"
             { (yyval.stmt) = atoi(yytext); }
-#line 1494 "parser.c"
+#line 1498 "parser.c"
     break;
 
   case 30:
-#line 119 "parser1.bison"
+#line 125 "parser1.bison"
             { (yyval.stmt) = atoi(yytext); }
-#line 1500 "parser.c"
+#line 1504 "parser.c"
     break;
 
   case 32:
-#line 123 "parser1.bison"
+#line 129 "parser1.bison"
                     { (yyval.stmt) = atoi(yytext); }
-#line 1506 "parser.c"
+#line 1510 "parser.c"
     break;
 
   case 33:
-#line 124 "parser1.bison"
+#line 130 "parser1.bison"
                    { (yyval.stmt) = atoi(yytext); }
-#line 1512 "parser.c"
+#line 1516 "parser.c"
     break;
 
   case 34:
-#line 125 "parser1.bison"
+#line 131 "parser1.bison"
                     { (yyval.stmt) = atoi(yytext); }
-#line 1518 "parser.c"
+#line 1522 "parser.c"
     break;
 
   case 35:
-#line 126 "parser1.bison"
+#line 132 "parser1.bison"
                      { (yyval.stmt) = atoi(yytext); }
-#line 1524 "parser.c"
+#line 1528 "parser.c"
     break;
 
   case 36:
-#line 130 "parser1.bison"
+#line 136 "parser1.bison"
                  { (yyval.type) = atoi(yytext); }
-#line 1530 "parser.c"
+#line 1534 "parser.c"
     break;
 
   case 37:
-#line 131 "parser1.bison"
+#line 137 "parser1.bison"
                     { (yyval.type) = atoi(yytext); }
-#line 1536 "parser.c"
+#line 1540 "parser.c"
     break;
 
   case 38:
-#line 132 "parser1.bison"
+#line 138 "parser1.bison"
                    { (yyval.type) = atoi(yytext); }
-#line 1542 "parser.c"
+#line 1546 "parser.c"
     break;
 
   case 39:
-#line 133 "parser1.bison"
+#line 139 "parser1.bison"
                     { (yyval.type) = atoi(yytext); }
-#line 1548 "parser.c"
+#line 1552 "parser.c"
     break;
 
   case 40:
-#line 134 "parser1.bison"
+#line 140 "parser1.bison"
                  { (yyval.type) = atoi(yytext); }
-#line 1554 "parser.c"
+#line 1558 "parser.c"
     break;
 
 
-#line 1558 "parser.c"
+#line 1562 "parser.c"
 
       default: break;
     }
@@ -1786,7 +1790,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 136 "parser1.bison"
+#line 142 "parser1.bison"
 
 
 /* If statements? */
@@ -1799,6 +1803,7 @@ yyreturn:
 
 int yyerror(char *str)
 {
+    //struct decl *parser_result;
      printf("parse error: %s on line %d\n",str, yylineno);
      //return 0;
 }
