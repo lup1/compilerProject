@@ -94,7 +94,7 @@ param: TOKEN_IDENT TOKEN_COLON type
      | TOKEN_IDENT TOKEN_COLON type ", " param
      ;
 
-body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON ($$ = stmt_create(STMT_RETURN, )) 
+body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON {$$ = stmt_create(STMT_RETURN, 0, 0, $2, 0, 0, 0, 0);} 
     | line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON 
     | line { $$ = $1; }
     ;
@@ -133,11 +133,11 @@ factor: TOKEN_SUBTRACT factor
       ;
 
 
-type: TOKEN_VOID { $$ = atoi(yytext); }
-    | TOKEN_INTEGER { $$ = atoi(yytext); }
-    | TOKEN_STRING { $$ = atoi(yytext); }
-    | TOKEN_BOOLEAN { $$ = atoi(yytext); }
-    | TOKEN_CHAR { $$ = atoi(yytext); }
+type: TOKEN_VOID { $$ = type_create(TYPE_VOID, 0, 0, 0); }
+    | TOKEN_INTEGER { $$ = type_create(TYPE_INTEGER, 0, 0, 0); }
+    | TOKEN_STRING { $$ = type_create(TYPE_STRING, 0, 0, 0); }
+    | TOKEN_BOOLEAN { $$ = type_create(TYPE_BOOLEAN, 0, 0, 0); }
+    | TOKEN_CHAR { $$ = type_create(TYPE_CHAR, 0, 0, 0); }
     ;
 %%
 
