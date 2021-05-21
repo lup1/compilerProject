@@ -3,6 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "decl.h"
+#include "stmt.h"
+#include "expr.h"
+#include "type.h"
+#include "param_list.h"
+
 extern char *yytext;
 extern int yylex();
 extern int yyerror( char *str );
@@ -94,7 +100,7 @@ param: TOKEN_IDENT TOKEN_COLON type
      | TOKEN_IDENT TOKEN_COLON type ", " param
      ;
 
-body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON {$$ = stmt_create(STMT_RETURN, 0, 0, $2, 0, 0, 0, 0);} 
+body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON {$$ = stmt_create(STMT_RETURN, 0, 0, $1, 0, 0, 0, 0);} 
     | line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON 
     | line { $$ = $1; }
     ;
