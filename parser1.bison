@@ -100,7 +100,7 @@ param: TOKEN_IDENT TOKEN_COLON type
      | TOKEN_IDENT TOKEN_COLON type ", " param
      ;
 
-body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON {$$ = decl_create(STMT_RETURN, 0, $1, 0, 0);} 
+body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON {$$ = decl_create(STMT_RETURN, 0, 0, 0, 0);} 
     | line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON 
     | line { $$ = $1; }
     ;
