@@ -139,11 +139,11 @@ factor: TOKEN_SUBTRACT factor
       ;
 
 
-type: TOKEN_VOID { $$ = type_create(TYPE_VOID, 0, 0, 0); }
-    | TOKEN_INTEGER { $$ = type_create(TYPE_INTEGER, 0, 0, 0); }
-    | TOKEN_STRING { $$ = type_create(TYPE_STRING, 0, 0, 0); }
-    | TOKEN_BOOLEAN { $$ = type_create(TYPE_BOOLEAN, 0, 0, 0); }
-    | TOKEN_CHAR { $$ = type_create(TYPE_CHAR, 0, 0, 0); }
+type: TOKEN_VOID { $$ = type_create(TYPE_VOID, 0, 0); }
+    | TOKEN_INTEGER { $$ = type_create(TYPE_INTEGER, 0, 0); }
+    | TOKEN_STRING { $$ = type_create(TYPE_STRING, 0, 0); }
+    | TOKEN_BOOLEAN { $$ = type_create(TYPE_BOOLEAN, 0, 0); }
+    | TOKEN_CHAR { $$ = type_create(TYPE_CHARACTER, 0, 0); }
     ;
 %%
 

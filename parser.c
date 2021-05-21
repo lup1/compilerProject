@@ -1541,31 +1541,31 @@ yyreduce:
 
   case 36:
 #line 142 "parser1.bison"
-                 { (yyval.type) = type_create(TYPE_VOID, 0, 0, 0); }
+                 { (yyval.type) = type_create(TYPE_VOID, 0, 0); }
 #line 1546 "parser.c"
     break;
 
   case 37:
 #line 143 "parser1.bison"
-                    { (yyval.type) = type_create(TYPE_INTEGER, 0, 0, 0); }
+                    { (yyval.type) = type_create(TYPE_INTEGER, 0, 0); }
 #line 1552 "parser.c"
     break;
 
   case 38:
 #line 144 "parser1.bison"
-                   { (yyval.type) = type_create(TYPE_STRING, 0, 0, 0); }
+                   { (yyval.type) = type_create(TYPE_STRING, 0, 0); }
 #line 1558 "parser.c"
     break;
 
   case 39:
 #line 145 "parser1.bison"
-                    { (yyval.type) = type_create(TYPE_BOOLEAN, 0, 0, 0); }
+                    { (yyval.type) = type_create(TYPE_BOOLEAN, 0, 0); }
 #line 1564 "parser.c"
     break;
 
   case 40:
 #line 146 "parser1.bison"
-                 { (yyval.type) = type_create(TYPE_CHAR, 0, 0, 0); }
+                 { (yyval.type) = type_create(TYPE_CHARACTER, 0, 0); }
 #line 1570 "parser.c"
     break;
 

@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
         else if (print_flag) {
                 printf("print case \n");
 
-                parse_check = yypase();
+                parse_check = yyparse();
 
                 if (parse_check) {
                     printf("Parse error on line %d\n", yylineno);
