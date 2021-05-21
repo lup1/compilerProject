@@ -29,8 +29,8 @@ extern struct decl *parser_result;
 
 
 // Everything of one type can only interact with other things of the same type
-%type <decl> program programs func line expr //compare factor body term type assign
-%type <stmt> compare factor body
+%type <decl> program programs func body line expr //compare factor body term type assign
+%type <stmt> compare factor
 // %type <symbol> compare factor
 %type <expr> term 
 %type <type> type assign
@@ -100,7 +100,7 @@ param: TOKEN_IDENT TOKEN_COLON type
      | TOKEN_IDENT TOKEN_COLON type ", " param
      ;
 
-body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON {$$ = stmt_create(STMT_RETURN, 0, 0, $1, 0, 0, 0, 0);} 
+body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON {$$ = decl_create(STMT_RETURN, 0, $1, 0, 0);} 
     | line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON 
     | line { $$ = $1; }
     ;

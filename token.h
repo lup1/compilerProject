@@ -99,7 +99,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 14 "parser1.bison"
+#line 20 "parser1.bison"
 
     struct decl *decl;
     struct stmt *stmt;

@@ -1439,13 +1439,13 @@ yyreduce:
 
   case 9:
 #line 103 "parser1.bison"
-                                                    {(yyval.stmt) = stmt_create(STMT_RETURN, 0, 0, (yyvsp[-3].decl), 0, 0, 0, 0);}
+                                                    {(yyval.decl) = decl_create(STMT_RETURN, 0, (yyvsp[-3].decl), 0, 0);}
 #line 1444 "parser.c"
     break;
 
   case 11:
 #line 105 "parser1.bison"
-           { (yyval.stmt) = (yyvsp[0].decl); }
+           { (yyval.decl) = (yyvsp[0].decl); }
 #line 1450 "parser.c"
     break;
 

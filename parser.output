@@ -142,7 +142,7 @@ Nonterminals, with rules where they appear
     param (51)
         on left: 6 7
         on right: 4 7
-    body <stmt> (52)
+    body <decl> (52)
         on left: 8 9 10
         on right: 4 5
     line <decl> (53)
