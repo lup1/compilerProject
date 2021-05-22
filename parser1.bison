@@ -110,7 +110,7 @@ line: expr TOKEN_SEMICOLON { parser_result = $1; }
     ;
 
 expr: assign { $$ = $1; }
-    | term compare term
+    | compare {$$ = $1; }
     | term TOKEN_ADD term { $$ = expr_create(TOKEN_ADD, $1, $3); }
     | term TOKEN_SUBTRACT term { $$ = expr_create(TOKEN_SUBTRACT, $1, $3); }
     | term { $$ = $1; }
@@ -124,11 +124,11 @@ term: term TOKEN_STAR factor
     | term TOKEN_DIVIDE factor
     | factor { $$ = $1; }
     ;
-compare: EQ { $$ = atoi(yytext); }
-       | GT { $$ = atoi(yytext); }
-       | GE { $$ = atoi(yytext); }
-       | LE { $$ = atoi(yytext); }
-       | NE { $$ = atoi(yytext); }
+compare: term EQ term 
+       | term GT term 
+       | term GE term 
+       | term LE term 
+       | term NE term 
        ;
 
 factor: TOKEN_SUBTRACT factor
