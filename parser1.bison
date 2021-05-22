@@ -101,7 +101,7 @@ param: TOKEN_IDENT TOKEN_COLON type
      ;
 
 body: line TOKEN_RETURN TOKEN_IDENT TOKEN_SEMICOLON {$$ = decl_create(STMT_RETURN, 0, 0, 0, 0);} 
-    | line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON 
+    | line TOKEN_RETURN TOKEN_NUMBER TOKEN_SEMICOLON {$$ = decl_create(STMT_RETURN, 0, 0, 0, 0); }
     | line { $$ = $1; }
     ;
 
@@ -131,7 +131,7 @@ compare: term EQ term
        | term NE term 
        ;
 
-factor: TOKEN_SUBTRACT factor {$$ = expr_create(EXPR_SUB, $1, 0); }
+factor: TOKEN_SUBTRACT factor {$$ = expr_create(EXPR_SUB, 0, 0); }
       | TOKEN_IDENT { $$ = atoi(yytext); }
       | TOKEN_TRUE { $$ = atoi(yytext); }
       | TOKEN_FALSE { $$ = atoi(yytext); }
