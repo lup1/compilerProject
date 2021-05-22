@@ -30,9 +30,9 @@ extern struct decl *parser_result;
 
 // Everything of one type can only interact with other things of the same type
 %type <decl> program programs func body line expr //compare factor body term type assign
-%type <stmt> compare factor
+%type <stmt> compare 
 // %type <symbol> compare factor
-%type <expr> term 
+%type <expr> term factor
 %type <type> type assign
 // Try using create statements like the ones in the libraries
 
@@ -120,8 +120,8 @@ assign: TOKEN_IDENT TOKEN_COLON type
       | TOKEN_IDENT TOKEN_COLON type TOKEN_ASS line
       | TOKEN_IDENT TOKEN_ASS expr
       ;
-term: term TOKEN_STAR factor
-    | term TOKEN_DIVIDE factor
+term: term TOKEN_STAR factor {$$ = expr_create(EXPR_MUL, $1, $3);}
+    | term TOKEN_DIVIDE factor {$$ = expr_create(EXPR_DIV, $1, $3);}
     | factor { $$ = $1; }
     ;
 compare: term EQ term 
@@ -131,7 +131,7 @@ compare: term EQ term
        | term NE term 
        ;
 
-factor: TOKEN_SUBTRACT factor
+factor: TOKEN_SUBTRACT factor {$$ = expr_create(EXPR_SUB, $1, 0); }
       | TOKEN_IDENT { $$ = atoi(yytext); }
       | TOKEN_TRUE { $$ = atoi(yytext); }
       | TOKEN_FALSE { $$ = atoi(yytext); }
