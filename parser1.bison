@@ -124,11 +124,11 @@ term: term TOKEN_STAR factor {$$ = expr_create(EXPR_MUL, $1, $3);}
     | term TOKEN_DIVIDE factor {$$ = expr_create(EXPR_DIV, $1, $3);}
     | factor { $$ = $1; }
     ;
-compare: term EQ term 
-       | term GT term 
-       | term GE term 
-       | term LE term 
-       | term NE term 
+compare: term EQ term { $$ = expr_create(EXPR_EQ, $1, $3); }
+       | term GT term { $$ = expr_create(EXPR_GT, $1, $3); }
+       | term GE term { $$ = expr_create(EXPR_GE, $1, $3); }
+       | term LE term { $$ = expr_create(EXPR_LE, $1, $3); }
+       | term NE term { $$ = expr_create(EXPR_NE, $1, $3); }
        ;
 
 factor: TOKEN_SUBTRACT factor {$$ = expr_create(EXPR_SUB, 0, 0); }

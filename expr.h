@@ -7,7 +7,12 @@ typedef enum {
 	EXPR_ADD,
 	EXPR_SUB,
 	EXPR_MUL,
-	EXPR_DIV
+	EXPR_DIV,
+	EXPR_EQ,
+	EXPR_GT,
+	EXPR_GE,
+	EXPR_LE,
+	EXPR_NE
 	/* many more kinds of exprs to add here */
 } expr_t;
 

@@ -1511,68 +1511,74 @@ yyreduce:
 #line 1512 "parser.c"
     break;
 
+  case 26:
+#line 127 "parser1.bison"
+                      { (yyval.stmt) = expr_create(EXPR_EQ, (yyvsp[-2].expr), (yyvsp[0].expr)); }
+#line 1518 "parser.c"
+    break;
+
   case 31:
 #line 134 "parser1.bison"
                               {(yyval.expr) = expr_create(EXPR_SUB, 0, 0); }
-#line 1518 "parser.c"
+#line 1524 "parser.c"
     break;
 
   case 32:
 #line 135 "parser1.bison"
                     { (yyval.expr) = atoi(yytext); }
-#line 1524 "parser.c"
+#line 1530 "parser.c"
     break;
 
   case 33:
 #line 136 "parser1.bison"
                    { (yyval.expr) = atoi(yytext); }
-#line 1530 "parser.c"
+#line 1536 "parser.c"
     break;
 
   case 34:
 #line 137 "parser1.bison"
                     { (yyval.expr) = atoi(yytext); }
-#line 1536 "parser.c"
+#line 1542 "parser.c"
     break;
 
   case 35:
 #line 138 "parser1.bison"
                      { (yyval.expr) = atoi(yytext); }
-#line 1542 "parser.c"
+#line 1548 "parser.c"
     break;
 
   case 36:
 #line 142 "parser1.bison"
                  { (yyval.type) = type_create(TYPE_VOID, 0, 0); }
-#line 1548 "parser.c"
+#line 1554 "parser.c"
     break;
 
   case 37:
 #line 143 "parser1.bison"
                     { (yyval.type) = type_create(TYPE_INTEGER, 0, 0); }
-#line 1554 "parser.c"
+#line 1560 "parser.c"
     break;
 
   case 38:
 #line 144 "parser1.bison"
                    { (yyval.type) = type_create(TYPE_STRING, 0, 0); }
-#line 1560 "parser.c"
+#line 1566 "parser.c"
     break;
 
   case 39:
 #line 145 "parser1.bison"
                     { (yyval.type) = type_create(TYPE_BOOLEAN, 0, 0); }
-#line 1566 "parser.c"
+#line 1572 "parser.c"
     break;
 
   case 40:
 #line 146 "parser1.bison"
                  { (yyval.type) = type_create(TYPE_CHARACTER, 0, 0); }
-#line 1572 "parser.c"
+#line 1578 "parser.c"
     break;
 
 
-#line 1576 "parser.c"
+#line 1582 "parser.c"
 
       default: break;
     }
