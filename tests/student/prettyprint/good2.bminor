@@ -1,0 +1,2 @@
+onetwothree: function integer (x:integer) = { y: integer;
+   y = x +2;}

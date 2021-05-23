@@ -1,0 +1,11 @@
+square: function void () = { y: char;
+    
+    y = "p";z = "u";
+    
+    g: string;
+    
+    x:integer;
+
+    
+    
+}
