@@ -1,0 +1,5 @@
+scanner.flex contains the tokens that are detected by the scanner
+parser.bison contains the sequences of tokens that should be allowed as the syntax of the program. Additionally, although not yet implemented, it should aid in the creation of an
+abstract syntax tree that will eventually help with generating machine code.
+
+NOTE: .h files not edited to work for parser!!!
